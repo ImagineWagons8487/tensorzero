@@ -120,11 +120,43 @@ impl Variant for ChainOfThoughtConfig {
         _clients: &'request InferenceClients<'request>,
         _inference_params: InferenceParams,
     ) -> Result<(InferenceResultStream, ModelUsedInfo), Error> {
+        //set up the call to the model
+        //make the call to the model
+        //return the response from the model
+
         Err(ErrorDetails::UnsupportedVariantForStreamingInference {
             variant_type: "chain_of_thought".to_string(),
             issue_link: Some("https://github.com/tensorzero/tensorzero/issues/1839".to_string()),
         }
         .into())
+
+        // Current Attemp
+        // let (mut stream, model_info ) = self
+        // .inner
+        // .infer_stream(
+        //     &_input,
+        //     &_models,
+        //     _function,
+        //     &_inference_config,
+        //     &_clients,
+        //     _inference_params.clone(),
+        // )
+        // .await
+        // .unwrap();
+
+        // // accrue tokens and split them with "response:" as a delimiter?
+        //     // what tokens?
+        // let mut buffer = String::new();
+        // let mapped_stream = stream.map(move |chunk| {
+        //     buffer.push_str(&chunk.text);
+        //     // emit InferenceStreamData::Thought(buffer.clone()) when thinking is complete
+        //         // how to check when thinking is complete?
+        //     // emit InferenceStreamData::Response(...) as response tokens arrive
+        //         // the split reponse tokens?
+        //     InferenceStreamData::Text(chunk.text);
+        // });
+
+        // Ok((InferenceResultStream::new(mapped_stream), model_info))
     }
 
     async fn validate(

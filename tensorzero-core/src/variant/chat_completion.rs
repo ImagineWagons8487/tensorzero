@@ -420,6 +420,8 @@ impl Variant for ChatCompletionConfig {
         clients: &'request InferenceClients<'request>,
         inference_params: InferenceParams,
     ) -> Result<(InferenceResultStream, ModelUsedInfo), Error> {
+        // Commented because pre-commit doesn't allow it
+        // println!("ChatCompletion is streaming!");
         let mut inference_params = inference_params;
         let request = self.prepare_request(
             input,
